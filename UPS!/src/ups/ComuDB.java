@@ -36,13 +36,13 @@ public class ComuDB {
     }
     /**
      * Executa a busca no banco de dados 
-     * @param params são os parametros necessários para a busca
-     * @param dados local que deseja fazer a busca
+     * @param dados seleciona os dados que são necessários na busca 
+     * @param tabela local que deseja fazer a busca
      * @return retorna o resultado da busca se houver resultado, caso contrário retorna null para mostrar que a busca não obteve resultados
      * @throws SQLException verifica somente um possível erro que apareça na query do SQL
      */
-    public ResultSet searchDB(String params, String dados) throws SQLException{
-        MSG = "Selext * from "+params+" where "+dados;
+    public ResultSet searchDB(String dados, String tabela) throws SQLException{
+        MSG = "Select "+dados+" from "+tabela;
         ResultSet busca =  stats.executeQuery(MSG);
         if (!busca.next()){
             JOptionPane.showMessageDialog(null,"A busca não retornou nenhum resultado");
