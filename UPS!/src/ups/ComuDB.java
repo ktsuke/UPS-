@@ -7,17 +7,17 @@ import javax.swing.JOptionPane;
  */
 public class ComuDB {
     public String MSG="";
-    private String login, senha;
+    private String LOGIN, SENHA;
     private Connection connection=null;
     private Statement stats=null;
-    String url="jdbc:mysql:file:UPSDB";
+    private final String URL ="jdbc:mysql:file:UPSDB";
     /**
      * Conecta ao banco de dados e caso apareça algum erro retorna uma janela de alerta com o erro
      */
     public void conecDB(){
         try {
-            connection = DriverManager.getConnection(url, login, senha);
-            stats= connection.createStatement();
+            connection = DriverManager.getConnection(URL, LOGIN, SENHA);
+            stats = connection.createStatement();
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Erro "+e);

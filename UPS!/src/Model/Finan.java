@@ -1,4 +1,4 @@
-package ups;
+package Model;
 
 /**
  *
