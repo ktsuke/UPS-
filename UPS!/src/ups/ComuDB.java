@@ -1,64 +1,76 @@
 package ups;
-import java.sql.*;
-import javax.swing.JOptionPane;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
- * @author ktsuke
+ * @author unifasilva
  */
 public class ComuDB {
-    public String MSG="";
-    private String LOGIN, SENHA;
-    private Connection connection=null;
-    private Statement stats=null;
-    private final String URL ="jdbc:mysql:file:UPSDB";
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://localhost:3306/upsdatabase";
+    private static final String USER = "root";
+    private static final String PASS = "";
+    
     /**
-     * Conecta ao banco de dados e caso apareça algum erro retorna uma janela de alerta com o erro
+     * Função responsável por abrir a conexão com o banco
+     * 
      */
-    public void conecDB(){
+    public static Connection getConnection(){
         try {
-            connection = DriverManager.getConnection(URL, LOGIN, SENHA);
-            stats = connection.createStatement();
-        }
-        catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Erro "+e);
-        }
-    }
-    /**
-     * Fecha a conexão com o banco de dados
-     */
-    public void fechaDB(){
-        try{
-            connection.close();
-        }
-        catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Erro de fechamento "+e);
+            Class.forName(DRIVER);
+            
+            return DriverManager.getConnection(URL, USER, PASS);
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new RuntimeException("Falha na conexão", ex);
         }
     }
     /**
-     * Executa a busca no banco de dados 
-     * @param dados seleciona os dados que são necessários na busca 
-     * @param tabela local que deseja fazer a busca
-     * @return retorna o resultado da busca se houver resultado, caso contrário retorna null para mostrar que a busca não obteve resultados
-     * @throws SQLException verifica somente um possível erro que apareça na query do SQL
+     * Função responsável por fechar a conexão com o banco
+     * 
      */
-    public ResultSet searchDB(String dados, String tabela) throws SQLException{
-        MSG = "Select "+dados+" from "+tabela;
-        ResultSet busca =  stats.executeQuery(MSG);
-        if (!busca.next()){
-            JOptionPane.showMessageDialog(null,"A busca não retornou nenhum resultado");
-            return null;
+    public static void closeConnection(Connection c){
+        if(c != null){
+            try {
+                c.close();
+            } catch (SQLException ex) {
+                System.out.println("Erro: " +ex);
+            }
         }
-        else {
-            return busca;
-        }
-    }
-    /*
-    public void deleteDB(){
-        
     }
     
-    public void upDB(){
+    /**
+     * Função responsável por fechar a o Statement e a conexão com o banco
+     * 
+     */
+    public static void closeConnection(Connection c, PreparedStatement stmt){
+        if(stmt != null){
+            try {
+                stmt.close();
+            } catch (SQLException ex) {
+                System.out.println("Erro: " +ex);
+            }
+        }
         
-    }*/
+        closeConnection(c);
+    }
+    
+    public static void closeConnection(Connection c, PreparedStatement stmt, ResultSet rs){
+        if(rs != null){
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                System.out.println("Erro: " +ex);
+            }
+        }
+        
+        closeConnection(c, stmt);
+    }
+
 }
 
