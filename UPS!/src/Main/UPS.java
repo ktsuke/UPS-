@@ -21,6 +21,7 @@ public class UPS {
         Resultados janelaResult = new Resultados();
         Inter programa = new Inter(janelaResult);
         programa.setVisible(true);
+        
     }
     
 }

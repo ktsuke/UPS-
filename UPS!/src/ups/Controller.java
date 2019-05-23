@@ -4,21 +4,35 @@
  * and open the template in the editor.
  */
 package ups;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import Model.Loja;
+import Model.LojaDAO;
+import Model.Produto;
+import Model.ProdutoDAO;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author ktsuke
  */
 public class Controller {
-    public ResultSet listaLoja() throws SQLException{
-        ResultSet totalLoja;
-        ComuDB sql = new ComuDB();
-        
-        totalLoja=sql.searchDB("nome", "loja");
-        return totalLoja;
+    public Controller(){}
+
+    private String nomeProd;
+
+    public void setNomeProd(String nomeProd) {
+        this.nomeProd = nomeProd;
+    }
+    
+    
+    
+    LojaDAO loja = new LojaDAO();
+    ProdutoDAO o = new ProdutoDAO();
+    
+    public void setLoja(){
+        for(Produto p: o.read()){
+            p.setNome_loja("Amazon");
+        }
     }
     
 }
