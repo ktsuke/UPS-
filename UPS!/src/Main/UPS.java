@@ -5,7 +5,6 @@
  */
 package Main;
 
-import View.Resultados;
 import View.Inter;
 
 /**
@@ -18,10 +17,8 @@ public class UPS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Resultados janelaResult = new Resultados();
-        Inter programa = new Inter(janelaResult);
+        Inter programa = new Inter();
         programa.setVisible(true);
-        
     }
     
 }

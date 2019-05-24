@@ -16,13 +16,13 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author ktsuke
  */
-public class Historico extends ChartFactory{
+public class Histo extends ChartFactory{
     
     public CategoryDataset dados(Produto p){
         DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
         
         
-        dataSet.addValue(p.getV_cash(), p.getNome(), p.getMes());
+        dataSet.addValue(p.getV_cash(), p.getNome(), p.getData());
         
         
         return dataSet;

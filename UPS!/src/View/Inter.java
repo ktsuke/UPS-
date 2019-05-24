@@ -5,8 +5,6 @@
  */
 package View;
 
-import javax.swing.JTextField;
-import ups.Controller;
 
 /**
  *
@@ -19,9 +17,8 @@ public class Inter extends javax.swing.JFrame {
      * @param janela
      */
     
-    public Inter(Resultados janela) {
+    public Inter() {
         initComponents();
-        this.janelaResult = janela;
         setResizable(false);
     }
     
@@ -61,23 +58,23 @@ public class Inter extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(63, 63, 63)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(prod_pesq, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addGap(122, 122, 122))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap(168, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(prod_pesq, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addGap(90, 90, 90))
         );
 
         pack();
@@ -89,12 +86,12 @@ public class Inter extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        Controller c = new Controller();
-        c.setNomeProd(prod_pesq.getText());
+        Resultados janela = new Resultados(prod_pesq.getText());
+        janela.setNomeProd(prod_pesq.getText());
+        this.janelaResult = janela;
         janelaResult.setTitle("Produto pesquisado: " + prod_pesq.getText());
         janelaResult.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -127,20 +124,14 @@ public class Inter extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Controller func = new Controller();
-                
-                //new Inter().setVisible(true);
+
             }
         });
     }
-
-    public JTextField getProd_pesq() {
-        return prod_pesq;
-    }
-    
     
     
     private Resultados janelaResult;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

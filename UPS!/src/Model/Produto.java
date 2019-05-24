@@ -15,7 +15,24 @@ public class Produto {
     private String nome_loja;
     private double v_cash;
     private double v_cCard;
-    private String mes;
+    private String data;
+    private double cambio;
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public double getCambio() {
+        return cambio;
+    }
+
+    public void setCambio(double cambio) {
+        this.cambio = cambio;
+    }
 
     public String getNome_loja() {
         return nome_loja;
@@ -59,14 +76,6 @@ public class Produto {
 
     public void setV_cCard(double v_cCard) {
         this.v_cCard = v_cCard;
-    }
-
-    public String getMes() {
-        return mes;
-    }
-
-    public void setMes(String mes) {
-        this.mes = mes;
     }
     
     

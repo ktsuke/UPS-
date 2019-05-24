@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ups.ComuDB;
-import ups.Controller;
 
 
 /**
@@ -28,28 +27,30 @@ public class ProdutoDAO {
     * Função responsável por ler os dados do banco, lendo tabela tbl_produto e adicionando
     * as insformações em um objeto Produto que é adicionado em um vetor de Produtos
     * 
+     * @param nome
     * @return retorna o vetor de produtos
     */
-    public List<Produto> read(){
-        Controller c = new Controller();
+    public List<Produto> read(String nome){
         Connection con = ComuDB.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
         List<Produto> produtos = new ArrayList<>();
+        //System.out.println(nome);
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM tbl_prod");
+            stmt = con.prepareStatement("SELECT * FROM tbl_prod WHERE nome_prod ='"+nome+"'");
             rs = stmt.executeQuery();
             
             while(rs.next()){
                 Produto p = new Produto();
-                p.setNome_loja("Teste nome loja");
+                p.setNome_loja(rs.getString("nome_loja"));
                 p.setId(rs.getInt("idtbl_prod"));
-                p.setNome(rs.getString("nome_produto"));
+                p.setNome(rs.getString("nome_prod"));
                 p.setV_cash(rs.getDouble("valor_cash"));
                 p.setV_cCard(rs.getDouble("valor_credCar"));
-                
+                p.setData(rs.getString("data"));
+                p.setCambio(rs.getDouble("cambio"));
                 
                 produtos.add(p);
             }
@@ -59,9 +60,8 @@ public class ProdutoDAO {
             ComuDB.closeConnection(con, stmt, rs);
         }
         
-        //for(int i=0; i<produtos.size(); i++){
-         //   produtos.get(i).setNome_loja();
-        //}
         return produtos;
     }
+    
+    
 }

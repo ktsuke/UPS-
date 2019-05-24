@@ -5,12 +5,13 @@
  */
 package View;
 
-import Model.Historico;
 import Model.Produto;
 import Model.ProdutoDAO;
-import java.awt.BorderLayout;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import Main.UPS;
+import Model.Histo;
+import java.awt.BorderLayout;
 
 /**
  *
@@ -21,39 +22,51 @@ public class Resultados extends javax.swing.JFrame {
     /**
      * Creates new form Resultados
      */
-
+    
+    private String nomeProd;
+    
     public Resultados() {
+
+    }
+    
+    public Resultados(String nomeProd){
         initComponents();
         DefaultTableModel modelo = (DefaultTableModel) lista.getModel();
         lista.setRowSorter(new TableRowSorter(modelo));
         
-        readResultados();
+        readResultados(nomeProd);
         
         Produto teste = new Produto();
-        teste.setMes("JAN");
+        teste.setData("JAN");
         teste.setV_cash(500.0);
         teste.setNome("SSD");
         this.jPanel2.setLayout(new BorderLayout());
-        Historico h = new Historico();
+        Histo h = new Histo();
         this.jPanel2.add(h.criaGrafico(teste));
         
-        
     }
+
+    public void setNomeProd(String nomeProd) {
+        this.nomeProd = nomeProd;
+    }
+
     
     /**
      * 
      * Função que faz a leitura do resultado do banco
      * 
      */
-    public void readResultados(){
+    public void readResultados(String teste){
         DefaultTableModel modelo = (DefaultTableModel) lista.getModel();
         ProdutoDAO p_dao = new ProdutoDAO();
+        //System.out.println(teste);
         
         /**
          * 
          * Adiciona os dados obtidos na tabela da interface gráfica
          */
-        for(Produto p: p_dao.read()){
+        for(Produto p: p_dao.read(teste)){
+            //System.out.println(nomeProd);
             if(p.getV_cCard() == 0.0){
                 modelo.addRow(new Object[]{
                     p.getNome_loja(),
@@ -196,10 +209,13 @@ public class Resultados extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Resultados().setVisible(true);
+                //new Resultados().setVisible(false);
             }
         });
     }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
