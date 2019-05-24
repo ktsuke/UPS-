@@ -10,73 +10,35 @@ package Model;
  * @author simao
  */
 public class Produto {
-    private int id;
-    private String nome;
-    private String nome_loja;
-    private double v_cash;
-    private double v_cCard;
-    private String data;
-    private double cambio;
+    private int idtbl_prod;
+    private String nome_prod;
+    private String orig_prod;
 
-    public String getData() {
-        return data;
+    public String getNome_prod() {
+        return nome_prod;
     }
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public double getCambio() {
-        return cambio;
-    }
-
-    public void setCambio(double cambio) {
-        this.cambio = cambio;
-    }
-
-    public String getNome_loja() {
-        return nome_loja;
-    }
-
-    public void setNome_loja(String nome_loja) {
-        this.nome_loja = nome_loja;
+    public void setNome_prod(String nome_prod) {
+        this.nome_prod = nome_prod;
     }
 
     public String getMensagem() {
         return "Valor não encontrado";
     }
 
-    public int getId() {
-        return id;
+    public int getIdtbl_prod() {
+        return idtbl_prod;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdtbl_prod(int idtbl_prod) {
+        this.idtbl_prod = idtbl_prod;
     }
 
-    public String getNome() {
-        return nome;
+    public String getOrig_prod() {
+        return orig_prod;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setOrig_prod(String orig_prod) {
+        this.orig_prod = orig_prod;
     }
-
-    public double getV_cash() {
-        return v_cash;
-    }
-
-    public void setV_cash(double v_cash) {
-        this.v_cash = v_cash;
-    }
-
-    public double getV_cCard() {
-        return v_cCard;
-    }
-
-    public void setV_cCard(double v_cCard) {
-        this.v_cCard = v_cCard;
-    }
-    
-    
 }

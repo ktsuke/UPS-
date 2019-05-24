@@ -16,7 +16,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author ktsuke
  */
-public class Histo extends ChartFactory{
+public class Historico extends ChartFactory{
     
     public CategoryDataset dados(ProdHasLoja p){
         DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
@@ -31,7 +31,7 @@ public class Histo extends ChartFactory{
     public JFreeChart graficoLinha(CategoryDataset dataSet){
      
         JFreeChart grafico = ChartFactory.createLineChart3D("Histórico Anual","Mês","Preço", dataSet,
-                                                          PlotOrientation.VERTICAL, true, false, false);
+                                                             PlotOrientation.VERTICAL, true, false, false);
         
         return grafico;
       
